@@ -129,3 +129,4 @@ INSERT INTO state_info (
 
 SELECT * FROM airlines_info;
 SELECT * FROM country_info;
+SELECT * from state_info;
