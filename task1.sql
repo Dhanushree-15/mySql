@@ -1,5 +1,4 @@
 CREATE DATABASE library;
-
 use library;
 
 CREATE TABLE Employee (
