@@ -152,3 +152,9 @@ INSERT INTO state_info (
 (19, 'Goa', 1, 'Panaji', 3702, 1542750, 416.9, 'P. S. Sreedharan Pillai'),
 (20, 'Delhi', 1, 'New Delhi', 1483, 19814000, 13363.3, 'Vinai Kumar Saxena');
 
+<<<<<<< HEAD
+=======
+SELECT * FROM airlines_info;
+SELECT * FROM country_info;
+SELECT * from state_info;
+>>>>>>> a267846678634a48f0cfe248fa95470182200283
