@@ -1,223 +1,165 @@
-CREATE DATABASE air;
-use air;
-CREATE TABLE airlines_info (
-    id INT,
-    name VARCHAR(50),
-    code VARCHAR(10),
-    head_office VARCHAR(100),
-    rating FLOAT
-);
-CREATE TABLE country_info (
-    id INT,
-    country_name VARCHAR(50),
-    continent VARCHAR(50),
-    population BIGINT,
-    language VARCHAR(50)
+CREATE DATABASE college;
+use college;
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gender VARCHAR(10),
+    dob DATE,
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    city VARCHAR(50)
 );
 
-CREATE TABLE state_info (
-    id INT,
-    state_name VARCHAR(50),
-    country_id INT,
-    capital VARCHAR(50),
-    area FLOAT
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    department VARCHAR(50),
+    credits INT,
+    instructor VARCHAR(100),
+    semester VARCHAR(10),
+    year INT,
+    mode VARCHAR(20)
 );
-ALTER TABLE airlines_info 
-ADD founded_year INT, 
-ADD ceo VARCHAR(50), 
-ADD fleet_size INT;
 
-ALTER TABLE country_info 
-ADD currency VARCHAR(50), 
-ADD gdp BIGINT, 
-ADD calling_code VARCHAR(10);
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    grade CHAR(2),
+    attendance_percentage DECIMAL(5,2),
+    status VARCHAR(20),
+    remarks TEXT
+);
 
-ALTER TABLE state_info 
-ADD population BIGINT, 
-ADD density FLOAT, 
-ADD governor VARCHAR(50);
+INSERT INTO students VALUES
+(1, 'John', 'Doe', 'Male', '2000-01-01', 'john@example.com', '1234567890', 'Bangalore'),
+(2, 'Jane', 'Smith', 'Female', '1999-05-10', 'jane@example.com', '9876543210', 'Mysore'),
+(3, 'Raj', 'Kumar', 'Male', '2001-03-15', 'raj@example.com', '9871234560', 'Chennai'),
+(4, 'Priya', 'Iyer', 'Female', '2000-07-20', 'priya@example.com', '9081726354', 'Hyderabad'),
+(5, 'Amit', 'Shah', 'Male', '1998-12-10', 'amit@example.com', '9123456789', 'Mumbai'),
+(6, 'Sara', 'Ali', 'Female', '1999-06-05', 'sara@example.com', '9234567890', 'Delhi'),
+(7, 'Ravi', 'Verma', 'Male', '2000-09-18', 'ravi@example.com', '9345678901', 'Pune'),
+(8, 'Neha', 'Singh', 'Female', '2001-02-22', 'neha@example.com', '9456789012', 'Kolkata'),
+(9, 'Vikram', 'Rao', 'Male', '1999-11-11', 'vikram@example.com', '9567890123', 'Ahmedabad'),
+(10, 'Divya', 'Menon', 'Female', '2000-03-03', 'divya@example.com', '9678901234', 'Bangalore'),
+(11, 'Rohan', 'Joshi', 'Male', '2001-04-01', 'rohan@example.com', '9789012345', 'Mysore'),
+(12, 'Kiran', 'Das', 'Female', '2002-01-25', 'kiran@example.com', '9890123456', 'Chennai'),
+(13, 'Sunil', 'Patel', 'Male', '1998-08-14', 'sunil@example.com', '9901234567', 'Mumbai'),
+(14, 'Meena', 'Jain', 'Female', '1999-10-30', 'meena@example.com', '9012345678', 'Delhi'),
+(15, 'Nikhil', 'Reddy', 'Male', '2000-06-09', 'nikhil@example.com', '9123456780', 'Hyderabad'),
+(16, 'Anjali', 'Kapoor', 'Female', '2001-07-07', 'anjali@example.com', '9234567891', 'Pune'),
+(17, 'Sameer', 'Khan', 'Male', '1999-05-23', 'sameer@example.com', '9345678902', 'Kolkata'),
+(18, 'Tina', 'Fernandez', 'Female', '2000-08-12', 'tina@example.com', '9456789013', 'Ahmedabad'),
+(19, 'Deepak', 'Nair', 'Male', '1998-11-29', 'deepak@example.com', '9567890124', 'Chennai'),
+(20, 'Arun', 'Verma', 'Male', '2000-11-29', 'arun@example.com', '7776665544', 'Mumbai');
 
-ALTER TABLE airlines_info 
-RENAME COLUMN name TO airline_name;
-ALTER TABLE airlines_info 
-RENAME COLUMN id TO origin_country_id;
-ALTER TABLE airlines_info 
-RENAME COLUMN ceo TO annual_passengers;
+INSERT INTO courses VALUES
+(101, 'Data Structures', 'CS', 4, 'Dr. Patel', 'Fall', 2024, 'Offline'),
+(102, 'Algorithms', 'CS', 4, 'Dr. Rao', 'Fall', 2024, 'Online'),
+(103, 'DBMS', 'IT', 4, 'Dr. Mehta', 'Fall', 2024, 'Hybrid'),
+(104, 'Computer Networks', 'CS', 3, 'Dr. Das', 'Spring', 2025, 'Offline'),
+(105, 'Operating Systems', 'CS', 4, 'Dr. Naik', 'Spring', 2025, 'Online'),
+(106, 'Machine Learning', 'AI', 4, 'Dr. Gupta', 'Fall', 2024, 'Offline'),
+(107, 'Cloud Computing', 'IT', 3, 'Dr. Reddy', 'Fall', 2024, 'Online'),
+(108, 'Cyber Security', 'IT', 3, 'Dr. Khan', 'Spring', 2025, 'Hybrid'),
+(109, 'Software Engg.', 'CS', 3, 'Dr. Iyer', 'Fall', 2024, 'Offline'),
+(110, 'AI & Ethics', 'AI', 2, 'Dr. Bose', 'Spring', 2025, 'Online'),
+(111, 'OOP', 'CS', 4, 'Dr. Singh', 'Fall', 2024, 'Offline'),
+(112, 'Statistics', 'Maths', 3, 'Dr. Verma', 'Fall', 2024, 'Hybrid'),
+(113, 'Discrete Maths', 'Maths', 3, 'Dr. Rao', 'Spring', 2025, 'Online'),
+(114, 'Linear Algebra', 'Maths', 3, 'Dr. Shah', 'Fall', 2024, 'Offline'),
+(115, 'Physics', 'Science', 4, 'Dr. Nair', 'Fall', 2024, 'Offline'),
+(116, 'Chemistry', 'Science', 4, 'Dr. George', 'Spring', 2025, 'Online'),
+(117, 'Biology', 'Science', 4, 'Dr. Fernandez', 'Fall', 2024, 'Online'),
+(118, 'Environmental Sci.', 'Science', 2, 'Dr. Rao', 'Spring', 2025, 'Offline'),
+(119, 'Philosophy', 'Arts', 3, 'Dr. Sharma', 'Fall', 2024, 'Online'),
+(120, 'History of Art', 'Arts', 3, 'Dr. Singh', 'Spring', 2025, 'Offline');
 
-ALTER TABLE country_info 
-RENAME COLUMN population TO total_population;
-ALTER TABLE country_info 
-RENAME COLUMN currency TO currency_name;
-ALTER TABLE country_info
-RENAME COLUMN country_name TO country;
-
-ALTER TABLE state_info 
-RENAME COLUMN land_area TO area;
-ALTER TABLE state_info 
-RENAME COLUMN population TO total_population;
-ALTER TABLE state_info 
-RENAME COLUMN density TO population_density;
-
-
-ALTER TABLE airlines_info 
-MODIFY rating DOUBLE;
-ALTER TABLE airlines_info 
-MODIFY airline_name VARCHAR(100);
-ALTER TABLE airlines_info 
-MODIFY origin_country_id INT;
-
-ALTER TABLE country_info 
-MODIFY gdp DOUBLE;
-ALTER TABLE country_info 
-MODIFY total_population BIGINT UNSIGNED;
-ALTER TABLE country_info 
-MODIFY currency_name VARCHAR(50);
-
-ALTER TABLE state_info 
-MODIFY density DOUBLE;
-ALTER TABLE state_info 
-MODIFY total_population BIGINT;
-ALTER TABLE state_info 
-MODIFY population_density DOUBLE(10,2);
-
-INSERT INTO airlines_info 
-VALUES 
-(1, 'Indigo', '6E', 'Delhi', 4.5, 2006, 'Pieter Elbers', 85),
-(2, 'Air India', 'AI', 'Delhi', 4.0, 1932, 'Campbell Wilson', 100),
-(3, 'SpiceJet', 'SG', 'Gurgaon', 3.8, 2005, 'Ajay Singh', 50),
-(4, 'Vistara', 'UK', 'Gurgaon', 4.3, 2013, 'Vinod Kannan', 49),
-(5, 'Go First', 'G8', 'Mumbai', 3.5, 2005, 'Kaushik Khona', 40),
-(6, 'Akasa Air', 'QP', 'Mumbai', 4.2, 2021, 'Vinay Dube', 60),
-(7, 'Alliance Air', '9I', 'Delhi', 3.9, 1996, 'Vineet Sood', 35),
-(8, 'AirAsia India', 'I5', 'Bangalore', 4.1, 2013, 'Sunil Bhaskaran', 45),
-(9, 'Jet Airways', '9W', 'Mumbai', 3.0, 1993, 'Sanjiv Kapoor', 65),
-(10, 'Blue Dart Aviation', 'BZ', 'Chennai', 3.7, 1995, 'Tulsi Mirchandaney', 55),
-(11, 'Zoom Air', 'ZO', 'Delhi', 3.2, 2017, 'Koustav Dhar', 30),
-(12, 'TruJet', '2T', 'Hyderabad', 3.4, 2013, 'V Umesh', 25),
-(13, 'Air Deccan', 'DN', 'Mumbai', 2.9, 2003, 'Capt. G. R. Gopinath', 20),
-(14, 'Paramount Airways', 'I7', 'Chennai', 3.1, 2005, 'Thiagarajan', 22),
-(15, 'Kingfisher Airlines', 'IT', 'Bangalore', 2.8, 2005, 'Vijay Mallya', 0),
-(16, 'Indian Airlines', 'IC', 'Delhi', 3.5, 1953, 'Ashok Sharma', 95),
-(17, 'Bharat Airways', 'BA', 'Mumbai', 2.7, 1990, 'Rajesh Mehta', 15),
-(18, 'Sahara Airlines', 'S2', 'Lucknow', 3.3, 1991, 'R.K. Singh', 10),
-(19, 'Deccan Charters', 'DD', 'Bangalore', 3.6, 1997, 'Capt. Nair', 12),
-(20, 'Pawan Hans', 'PH', 'Delhi', 4.0, 1985, 'Sanjeev Razdan', 75);
+INSERT INTO enrollments VALUES
+(1001, 1, 101, '2024-08-01', 'A', 95.0, 'Active', 'Excellent performance'),
+(1002, 2, 102, '2024-08-02', 'B', 85.5, 'Active', 'Good participation'),
+(1003, 3, 103, '2024-08-03', 'C', 75.0, 'Completed', 'Needs improvement'),
+(1004, 4, 104, '2024-08-04', 'A', 92.3, 'Active', 'Excellent'),
+(1005, 5, 105, '2024-08-05', 'B', 88.8, 'Completed', 'Good work'),
+(1006, 6, 106, '2024-08-06', 'A', 90.0, 'Active', 'Well done'),
+(1007, 7, 107, '2024-08-07', 'C', 72.5, 'Completed', 'Average'),
+(1008, 8, 108, '2024-08-08', 'B', 86.7, 'Active', 'Good effort'),
+(1009, 9, 109, '2024-08-09', 'A', 95.0, 'Completed', 'Excellent'),
+(1010, 10, 110, '2024-08-10', 'B', 88.0, 'Active', 'Good performance'),
+(1011, 11, 111, '2024-08-11', 'A', 91.2, 'Active', 'Excellent'),
+(1012, 12, 112, '2024-08-12', 'B', 83.5, 'Completed', 'Good'),
+(1013, 13, 113, '2024-08-13', 'C', 70.0, 'Completed', 'Below Average'),
+(1014, 14, 114, '2024-08-14', 'B', 82.5, 'Active', 'Nice'),
+(1015, 15, 115, '2024-08-15', 'A', 94.4, 'Completed', 'Excellent'),
+(1016, 16, 116, '2024-08-16', 'C', 69.0, 'Dropped', 'Poor'),
+(1017, 17, 117, '2024-08-17', 'B', 85.0, 'Completed', 'Good'),
+(1018, 18, 118, '2024-08-18', 'A', 90.5, 'Active', 'Very Good'),
+(1019, 19, 119, '2024-08-19', 'C', 74.0, 'Completed', 'Improvement needed'),
+(1020, 20, 120, '2025-01-10', 'C', 75.0, 'Completed', 'Needs improvement');
 
 
-INSERT INTO country_info 
-VALUES 
-(1, 'India', 'Asia', 1400000000, 'Hindi', 'INR', 3.73, '+91'),
-(2, 'USA', 'North America', 331000000, 'English', 'USD', 23.32, '+1'),
-(3, 'China', 'Asia', 1440000000, 'Mandarin', 'CNY', 17.73, '+86'),
-(4, 'Japan', 'Asia', 125000000, 'Japanese', 'JPY', 4.94, '+81'),
-(5, 'Germany', 'Europe', 83000000, 'German', 'EUR', 4.22, '+49'),
-(6, 'France', 'Europe', 67000000, 'French', 'EUR', 3.29, '+33'),
-(7, 'UK', 'Europe', 66000000, 'English', 'GBP', 3.13, '+44'),
-(8, 'Brazil', 'South America', 212000000, 'Portuguese', 'BRL', 2.06, '+55'),
-(9, 'Canada', 'North America', 38000000, 'English/French', 'CAD', 2.23, '+1'),
-(10, 'Russia', 'Europe/Asia', 145000000, 'Russian', 'RUB', 1.78, '+7'),
-(11, 'Australia', 'Oceania', 25000000, 'English', 'AUD', 1.60, '+61'),
-(12, 'South Korea', 'Asia', 52000000, 'Korean', 'KRW', 1.79, '+82'),
-(13, 'Mexico', 'North America', 126000000, 'Spanish', 'MXN', 1.32, '+52'),
-(14, 'Italy', 'Europe', 60000000, 'Italian', 'EUR', 2.00, '+39'),
-(15, 'Spain', 'Europe', 47000000, 'Spanish', 'EUR', 1.55, '+34'),
-(16, 'Saudi Arabia', 'Asia', 35000000, 'Arabic', 'SAR', 1.03, '+966'),
-(17, 'Indonesia', 'Asia', 276000000, 'Indonesian', 'IDR', 1.20, '+62'),
-(18, 'South Africa', 'Africa', 60000000, 'Zulu/English', 'ZAR', 0.40, '+27'),
-(19, 'Turkey', 'Europe/Asia', 84000000, 'Turkish', 'TRY', 0.82, '+90'),
-(20, 'Nigeria', 'Africa', 200000000, 'English', 'NGN', 0.48, '+234');
+UPDATE students SET city = 'Hyderabad' WHERE student_id = 1;
+UPDATE students SET phone = '1112223333' WHERE student_id = 2;
+UPDATE students SET email = 'updated3@example.com' WHERE student_id = 3;
+UPDATE students SET city = 'Delhi' WHERE student_id = 4;
+UPDATE students SET city = 'Chennai' WHERE student_id = 5;
+UPDATE students SET phone = '2223334444' WHERE student_id = 6;
+UPDATE students SET city = 'Mumbai' WHERE student_id = 7;
+UPDATE students SET phone = '3334445555' WHERE student_id = 8;
+UPDATE students SET city = 'Pune' WHERE student_id = 9;
+UPDATE students SET phone = '4445556666' WHERE student_id = 10;
 
-INSERT INTO state_info (
-    id, state_name, country_id, capital, land_area,
-    population, density, governor
-) VALUES
-(1, 'Karnataka', 1, 'Bengaluru', 191791, 61130704, 319.0, 'Thawar Chand Gehlot'),
-(2, 'Maharashtra', 1, 'Mumbai', 307713, 123144223, 400.2, 'Ramesh Bais'),
-(3, 'Tamil Nadu', 1, 'Chennai', 130058, 77841267, 598.3, 'R. N. Ravi'),
-(4, 'Uttar Pradesh', 1, 'Lucknow', 243286, 231502578, 951.2, 'Anandiben Patel'),
-(5, 'Gujarat', 1, 'Gandhinagar', 196024, 63872399, 325.7, 'Acharya Devvrat'),
-(6, 'Kerala', 1, 'Thiruvananthapuram', 38863, 35699443, 918.7, 'Arif Mohammad Khan'),
-(7, 'Punjab', 1, 'Chandigarh', 50362, 30141373, 598.3, 'Banwarilal Purohit'),
-(8, 'Rajasthan', 1, 'Jaipur', 342239, 81032689, 236.7, 'Kalraj Mishra'),
-(9, 'Bihar', 1, 'Patna', 94163, 124799926, 1324.8, 'Rajendra Arlekar'),
-(10, 'Haryana', 1, 'Chandigarh', 44212, 28672000, 648.7, 'Bandaru Dattatreya'),
-(11, 'Madhya Pradesh', 1, 'Bhopal', 308252, 85358965, 276.9, 'Mangubhai C. Patel'),
-(12, 'Andhra Pradesh', 1, 'Amaravati', 162968, 53903393, 330.8, 'S. Abdul Nazeer'),
-(13, 'West Bengal', 1, 'Kolkata', 88752, 91276115, 1028.4, 'C. V. Ananda Bose'),
-(14, 'Odisha', 1, 'Bhubaneswar', 155707, 46356334, 297.6, 'Raghubar Das'),
-(15, 'Chhattisgarh', 1, 'Raipur', 135191, 29436231, 217.8, 'Biswabhusan Harichandan'),
-(16, 'Jharkhand', 1, 'Ranchi', 79716, 38593948, 484.1, 'C. P. Radhakrishnan'),
-(17, 'Assam', 1, 'Dispur', 78438, 35607039, 454.1, 'Gulab Chand Kataria'),
-(18, 'Himachal Pradesh', 1, 'Shimla', 55673, 7300000, 131.1, 'Shiv Pratap Shukla'),
-(19, 'Goa', 1, 'Panaji', 3702, 1542750, 416.9, 'P. S. Sreedharan Pillai'),
-(20, 'Delhi', 1, 'New Delhi', 1483, 19814000, 13363.3, 'Vinai Kumar Saxena');
+UPDATE courses SET mode = 'Hybrid' WHERE course_id = 101;
+UPDATE courses SET credits = 5 WHERE course_id = 102;
+UPDATE courses SET semester = 'Winter' WHERE course_id = 103;
+UPDATE courses SET instructor = 'Dr. Updated' WHERE course_id = 104;
+UPDATE courses SET department = 'CSE' WHERE course_id = 105;
+UPDATE courses SET course_name = 'Advanced ML' WHERE course_id = 106;
+UPDATE courses SET mode = 'Online' WHERE course_id = 107;
+UPDATE courses SET year = 2025 WHERE course_id = 108;
+UPDATE courses SET mode = 'Offline' WHERE course_id = 109;
+UPDATE courses SET credits = 6 WHERE course_id = 110;
+
+UPDATE enrollments SET grade = 'A+' WHERE enrollment_id = 1001;
+UPDATE enrollments SET status = 'Dropped' WHERE enrollment_id = 1002;
+UPDATE enrollments SET attendance_percentage = 80.0 WHERE enrollment_id = 1003;
+UPDATE enrollments SET grade = 'B+' WHERE enrollment_id = 1004;
+UPDATE enrollments SET remarks = 'Updated' WHERE enrollment_id = 1005;
+UPDATE enrollments SET status = 'Active' WHERE enrollment_id = 1006;
+UPDATE enrollments SET attendance_percentage = 77.7 WHERE enrollment_id = 1007;
+UPDATE enrollments SET remarks = 'Updated again' WHERE enrollment_id = 1008;
+UPDATE enrollments SET grade = 'B' WHERE enrollment_id = 1009;
+UPDATE enrollments SET attendance_percentage = 89.9 WHERE enrollment_id = 1010;
 
 
-UPDATE airlines_info SET fleet_size = 90 WHERE origin_country_id = 1;
-UPDATE airlines_info SET rating = 4.6 WHERE airline_name = 'Indigo';
-UPDATE airlines_info SET head_office = 'New Delhi' WHERE airline_name = 'Air India';
-UPDATE airlines_info SET annual_passengers = 'Vinod Kannan (Interim)' WHERE airline_name = 'Vistara';
-UPDATE airlines_info SET rating = 3.9 WHERE airline_name = 'Go First';
-UPDATE airlines_info SET rating = 4.4 WHERE airline_name = 'Akasa Air';
-UPDATE airlines_info SET rating = 4.2 WHERE airline_name = 'Alliance Air';
-UPDATE airlines_info SET fleet_size = 50 WHERE airline_name = 'AirAsia India';
-UPDATE airlines_info SET code = 'AA' WHERE airline_name = 'AirAsia India';
-UPDATE airlines_info SET airline_name = 'Blue Dart' WHERE airline_name = 'Blue Dart Aviation';
 
-UPDATE country_info SET gdp = 3.85 WHERE country = 'India';
-UPDATE country_info SET total_population = 332000000 WHERE country = 'USA';
-UPDATE country_info SET continent = 'Asia-Pacific' WHERE country = 'Japan';
-UPDATE country_info SET calling_code = '+44' WHERE country = 'UK';
-UPDATE country_info SET currency_name = 'Euro' WHERE country = 'Germany';
-UPDATE country_info SET gdp = 4.00 WHERE country = 'Germany';
-UPDATE country_info SET language = 'Portuguese (BR)' WHERE country = 'Brazil';
-UPDATE country_info SET gdp = 2.50 WHERE country = 'Brazil';
-UPDATE country_info SET continent = 'Oceania-Pacific' WHERE country = 'Australia';
-UPDATE country_info SET language = 'Mandarin Chinese' WHERE country = 'China';
+DELETE FROM students WHERE city = 'Mysore';
+DELETE FROM courses WHERE department = 'CS' AND mode = 'Offline';
+DELETE FROM enrollments WHERE grade IN ('A', 'B');
+DELETE FROM students WHERE city NOT IN ('Bangalore', 'Chennai');
+DELETE FROM courses WHERE course_id BETWEEN 105 AND 110;
+DELETE FROM enrollments WHERE enrollment_id NOT BETWEEN 1005 AND 1010;
 
-UPDATE state_info SET capital = 'Bengaluru Urban' WHERE state_name = 'Karnataka';
-UPDATE state_info SET population_density = 425.2 WHERE state_name = 'Maharashtra';
-UPDATE state_info SET governor = 'R. N. Ravi (Temp)' WHERE state_name = 'Tamil Nadu';
-UPDATE state_info SET total_population = 230000000 WHERE state_name = 'Uttar Pradesh';
-UPDATE state_info SET area = 196000 WHERE state_name = 'Gujarat';
-UPDATE state_info SET population_density = 920.0 WHERE state_name = 'Kerala';
-UPDATE state_info SET capital = 'Mohali' WHERE state_name = 'Punjab';
-UPDATE state_info SET governor = 'Kalraj Mishra (Acting)' WHERE state_name = 'Rajasthan';
-UPDATE state_info SET population_density = 1330.0 WHERE state_name = 'Bihar';
-UPDATE state_info SET capital = 'Faridabad' WHERE state_name = 'Haryana';
 
-DELETE FROM airlines_info WHERE rating < 3.0;
-DELETE FROM airlines_info WHERE fleet_size BETWEEN 0 AND 20;
-DELETE FROM airlines_info WHERE origin_country_id = 1 AND fleet_size > 90;
-DELETE FROM airlines_info WHERE airline_name IN ('Kingfisher Airlines', 'Zoom Air');
-DELETE FROM airlines_info WHERE airline_name NOT IN ('Indigo', 'Air India');
 
-DELETE FROM country_info WHERE gdp < 1.0;
-DELETE FROM country_info WHERE country IN ('Turkey', 'Nigeria');
-DELETE FROM country_info WHERE continent = 'Europe' AND total_population > 80000000;
-DELETE FROM country_info WHERE gdp BETWEEN 2.0 AND 2.5;
-DELETE FROM country_info WHERE calling_code NOT IN ('+91', '+1');
+SELECT * FROM students WHERE gender = 'Male';
+SELECT * FROM courses WHERE credits = 4;
+SELECT * FROM enrollments WHERE status = 'Active';
 
-DELETE FROM state_info WHERE population_density > 1300;
-DELETE FROM state_info WHERE area BETWEEN 3000 AND 5000;
-DELETE FROM state_info WHERE state_name IN ('Goa', 'Delhi');
-DELETE FROM state_info WHERE governor = 'Bandaru Dattatreya';
-DELETE FROM state_info WHERE total_population NOT BETWEEN 10000000 AND 100000000;
 
-SELECT * FROM airlines_info WHERE rating > 4.0;
-SELECT * FROM country_info WHERE continent = 'Asia';
-SELECT * FROM state_info WHERE capital = 'Bhopal';
 
-SELECT * FROM airlines_info WHERE rating BETWEEN 4.0 AND 4.5;
-SELECT * FROM airlines_info WHERE fleet_size > 60 AND rating > 4.0;
-SELECT * FROM airlines_info WHERE airline_name IN ('Indigo', 'Vistara');
-SELECT * FROM airlines_info WHERE code NOT IN ('6E', 'AI');
+SELECT * FROM students WHERE city = 'Bangalore' AND gender = 'Male';
+SELECT * FROM courses WHERE department = 'CS' OR credits = 3;
+SELECT * FROM students WHERE city IN ('Bangalore', 'Mumbai');
+SELECT * FROM courses WHERE course_id NOT IN (101, 102);
+SELECT * FROM enrollments WHERE attendance_percentage BETWEEN 70 AND 90;
+SELECT * FROM enrollments WHERE enrollment_id NOT BETWEEN 1001 AND 1010;
 
-SELECT * FROM country_info WHERE gdp BETWEEN 2.0 AND 5.0;
-SELECT * FROM country_info WHERE country IN ('India', 'China') OR continent = 'Asia';
-SELECT * FROM country_info WHERE total_population NOT BETWEEN 50000000 AND 100000000;
 
-SELECT * FROM state_info WHERE area BETWEEN 50000 AND 100000;
-SELECT * FROM state_info WHERE state_name IN ('Karnataka', 'Tamil Nadu', 'Maharashtra');
-SELECT * FROM state_info WHERE population_density NOT BETWEEN 200 AND 600;
-
+UPDATE students SET city = 'Delhi' WHERE city = 'Mumbai' OR city = 'Hyderabad';
+UPDATE courses SET semester = 'Winter' WHERE course_id IN (115, 116, 117);
+UPDATE enrollments SET status = 'Inactive' WHERE enrollment_id BETWEEN 1011 AND 1015;
+UPDATE students SET phone = '9999999999' WHERE student_id NOT BETWEEN 1 AND 10;
