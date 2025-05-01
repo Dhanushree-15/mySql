@@ -2,7 +2,7 @@ CREATE DATABASE bottel;
 use bottel;
 
 CREATE TABLE employees (
-    emp_id INT PRIMARY KEY,
+    emp_id INT ,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(100),
@@ -13,7 +13,7 @@ CREATE TABLE employees (
 );
 
 CREATE TABLE products (
-    product_id INT PRIMARY KEY,
+    product_id INT,
     name VARCHAR(100),
     category VARCHAR(50),
     price DECIMAL(10, 2),
@@ -24,7 +24,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE students (
-    student_id INT PRIMARY KEY,
+    student_id INT,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     course VARCHAR(100),
@@ -105,6 +105,58 @@ UPDATE employees SET salary = salary + 5000 WHERE emp_id <= 10;
 UPDATE products SET quantity = quantity - 5 WHERE product_id BETWEEN 1 AND 10;
 UPDATE students SET fees_paid = fees_paid + 2000 WHERE student_id IN (1,2,3,4,5,6,7,8,9,10);
 
+ALTER TABLE employees
+ADD age int;
+
+ALTER TABLE employees
+ADD bonus int;
+
+
+UPDATE employees SET age = 30 WHERE emp_id = 1;
+UPDATE employees SET age = 34 WHERE emp_id = 2;
+UPDATE employees SET age = 29 WHERE emp_id = 3;
+UPDATE employees SET age = 27 WHERE emp_id = 4;
+UPDATE employees SET age = 33 WHERE emp_id = 5;
+UPDATE employees SET age = 31 WHERE emp_id = 6;
+UPDATE employees SET age = 28 WHERE emp_id = 7;
+UPDATE employees SET age = 26 WHERE emp_id = 8;
+UPDATE employees SET age = 32 WHERE emp_id = 9;
+UPDATE employees SET age = 35 WHERE emp_id = 10;
+UPDATE employees SET age = 30 WHERE emp_id = 11;
+UPDATE employees SET age = 29 WHERE emp_id = 12;
+UPDATE employees SET age = 36 WHERE emp_id = 13;
+UPDATE employees SET age = 28 WHERE emp_id = 14;
+UPDATE employees SET age = 33 WHERE emp_id = 15;
+UPDATE employees SET age = 31 WHERE emp_id = 16;
+UPDATE employees SET age = 34 WHERE emp_id = 17;
+UPDATE employees SET age = 37 WHERE emp_id = 18;
+UPDATE employees SET age = 30 WHERE emp_id = 19;
+UPDATE employees SET age = 29 WHERE emp_id = 20;
+
+UPDATE employees SET bonus = 300000 WHERE emp_id = 1;
+UPDATE employees SET bonus = 348474 WHERE emp_id = 2;
+UPDATE employees SET bonus = 293562 WHERE emp_id = 3;
+UPDATE employees SET bonus = 273382 WHERE emp_id = 4;
+UPDATE employees SET bonus = 333748 WHERE emp_id = 5;
+UPDATE employees SET bonus = 348391 WHERE emp_id = 6;
+UPDATE employees SET bonus = 283832 WHERE emp_id = 7;
+UPDATE employees SET bonus = 262382 WHERE emp_id = 8;
+UPDATE employees SET bonus = 322389 WHERE emp_id = 9;
+UPDATE employees SET bonus = 351923 WHERE emp_id = 10;
+UPDATE employees SET bonus = 303021 WHERE emp_id = 11;
+UPDATE employees SET bonus = 292928 WHERE emp_id = 12;
+UPDATE employees SET bonus = 362838 WHERE emp_id = 13;
+UPDATE employees SET bonus = 282829 WHERE emp_id = 14;
+UPDATE employees SET bonus = 333526 WHERE emp_id = 15;
+UPDATE employees SET bonus = 312393 WHERE emp_id = 16;
+UPDATE employees SET bonus = 349089 WHERE emp_id = 17;
+UPDATE employees SET bonus = 370000 WHERE emp_id = 18;
+UPDATE employees SET bonus = 302729 WHERE emp_id = 19;
+UPDATE employees SET bonus = 292739 WHERE emp_id = 20;
+
+
+
+
 DELETE FROM employees WHERE department = 'HR';
 DELETE FROM products WHERE category = 'Electronics' AND price > 1000;
 DELETE FROM students WHERE course = 'B.Tech' OR course = 'MBA';
@@ -128,3 +180,48 @@ UPDATE products SET price = price * 0.9 WHERE product_id IN (1,2,3);
 UPDATE students SET fees_paid = fees_paid - 1000 WHERE student_id NOT IN (15,16,17);
 UPDATE employees SET salary = salary + 2000 WHERE emp_id NOT BETWEEN 5 AND 15;
 UPDATE products SET quantity = quantity + 10 WHERE category = 'Groceries' OR category = 'Clothing';
+
+
+SELECT * from employees;
+SELECT count(*) from employees;
+SELECT COUNT(*) as no_of_rows FROM employees;
+SELECT sum(salary) as total_sal from employees;
+
+SELECT MAX(age) as max_age from employees;
+SELECT first_name, max(salary) as max_sal from employees;
+
+SELECT min(salary) as min_sal from employees;
+
+select avg(salary) as avg_sal from employees;
+
+select * from employees;
+
+select max(salary) as max_sal from employees
+where department = 'IT';
+SELECT sum(salary) as total_sal from employees
+where department = 'Finance';
+SELECT max(bonus) as max_bonus from employees
+where department = 'HR';
+SELECT first_name, max(salary) as max_sal from employees
+where department = 'marketing';
+
+SELECT sum(salary) as total_sal from employees
+where emp_id <= 10;
+
+SELECT sum(salary) as total_sal from employees limit 10;
+SELECT department,count(department) from employees group by department;
+
+SELECT sum(salary), department from employees group by department;
+
+SELECT department, min(bonus) as min_bonus from employees
+group by department;
+
+SELECT department, min(bonus) as new_bonus from employees
+group by department HAVING new_bonus > 30000;
+
+
+
+
+
+
+
